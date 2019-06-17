@@ -12,8 +12,8 @@ def arvorePesoMaximo (grafo, k):
 	# PASSO INDUTIVO
 	arvore = arvorePesoMaximo(grafo, k-1)
 
-	vertices = grafo.nodes
-	verticesUsados = arvore.nodes
+	vertices = grafo.nodes()
+	verticesUsados = arvore.nodes()
 	verticesAux = []
 	for vertice in vertices:
 		# guarda os vértices que ainda
@@ -33,7 +33,7 @@ def arvorePesoMaximo (grafo, k):
 	# de peso máximo
 	nova_aresta = (1,1)
 	for aresta in arestas:
-		if grafo.edges[aresta]['weight'] > grafo.edges[nova_aresta]['weight']:
+		if grafo.edges([aresta]) > grafo.edges([nova_aresta]):
 			nova_aresta = aresta
 
 	a, b = nova_aresta
