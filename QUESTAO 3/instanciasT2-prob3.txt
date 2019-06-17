@@ -1,0 +1,24 @@
+3
+T
+That one comment by my supervisor had a very large flow-on effect. One unintended outcome was that I ended up making Benders' decomposition a focus of my PhD thesis and subsequently applied it to other projects I have been involved in. The work completed as part of my thesis involved the application of Benders' decomposition in conjunction with column generation. I don't state this because it is particularly novel or ground-breaking, but because this integration of solution approaches greatly affects the resulting implementation. In another project while working as a postdoc at UNSW I developed a model that was just too large to fit into the variable structures provided by MATLAB. So I decided the best solution to that problem was to apply Benders' decomposition, hence reducing the number of variables in each individual subproblem. I felt that in this case it was absolutely necessary to use some decomposition technique, but I am not too sure whether that should have been Benders'. However, it worked and was successful.
+W 3
+Bend
+bend
+come
+T
+I'm a Ph.D. Candidate in the Computing and Mathematical Sciences department at Caltech, where I am advised by Katrina Ligett. My work seeks to bridge the gap between theory and practice in the formal study of privacy. This includes problems such as strategic aspects of data generation, incentivizing truthful reporting of data, impacts of privacy policy, human decision-making, and algorithm design. More broadly, I take a comprehensive approach to addressing real-world privacy challenges, using a diverse toolkit of both theoretical and practical perspectives.
+W 3
+tech
+work
+ate
+T
+Considerando que as Ciências Humanas e Sociais têm especificidades nas suas concepções e práticas de pesquisa, na medida em que nelas prevalece uma acepção pluralista de ciência da qual decorre a adoção de múltiplas perspectivas teóricometodológicas, bem como lidam com atribuições de significado, práticas e representações, sem intervenção direta no corpo humano, com natureza e grau de risco específico.
+W 3
+metodo
+cidade
+acia
+E
+
+
+
+
