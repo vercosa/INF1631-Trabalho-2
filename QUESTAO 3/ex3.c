@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
+
 
 int main(void) {
+	double soma_tempo = 0;
+	int QtExec = 0;
+	clock_t ti;           // Pega o Tempo de Execucao
 	FILE *arquivoTexto;  	// Arquivo com as instancias
 	char Frase[1500];    	// A
 	char Palavra[20];  		// B
@@ -34,6 +39,7 @@ int main(void) {
 	j = 0;
 	arquivoTexto = fopen("instanciasT2-prob3.txt","rt");
 	fscanf(arquivoTexto,"%d",&numText); // Comeca o programa
+	ti = clock();
 	while(numText != 0) {
 		memset(Frase, 0, sizeof(Frase));  // Reseta a Frase
 		fscanf(arquivoTexto,"%s", &t);    // Pega o primeiro valor T
@@ -51,22 +57,25 @@ int main(void) {
 		}
 		n = n - 2;                        // Remove o W
 		i = 0;
-		printf("Frase: %s\n",Frase);
+		//printf("Frase: %s\n",Frase);
 		fscanf(arquivoTexto,"%d",&numPalavra);  // Numero de palavras para comparar
 		while(numPalavra != 0) {
 			fscanf(arquivoTexto,"%s", &Palavra); 
 			m = strlen(Palavra);
-			printf("Palavra: %s\n",Palavra);
+			//printf("Palavra: %s\n",Palavra);
 			numPalavra--;
 			// ----------------------Treta Start----------------------------------------------
 			Next[0] = -1;
 			Next[1] = 0;
-			for(i = 2;i < m;i++) {
+			for(i = 2;i == m;i++) {
 				j = Next[i-1] + 1;
 				while(Palavra[i-1] != Palavra[j]) {
 					j = Next[j] + 1;
 				}
 				Next[i] = j;
+			}
+			for(i = 0; i < m; i++) {
+				//printf("Next[%d]: %d\n",i,Next[i]);
 			}
 			i = 0;
 			j = 0;
@@ -76,16 +85,21 @@ int main(void) {
 					i += 1;
 				}
 				else {
-					j = Next[j];
+					//printf("Nao achei igual: Palavra[%d]: %c == Frase[%d]: %c\n",j,Palavra[j],i,Frase[i]);
+					if(Next[j] == -1) {
+						j = Next[j] + 1;
+					}
+					else {
+						j = Next[j];
+					}
 					if(j == 0) {
-						j = 1;
+						j = 0;
 						i += 1;
 					}
 				}
 				if(j == m) {
 					Start[l][g] = i-m;
 				}
-				printf("Erro %d %d\n",i,j);
 			}
 			// -------------------------Treta End----------------------------------------------------
 			g++;
@@ -98,12 +112,15 @@ int main(void) {
 		l++;
 		numText--;
 	}
+	ti = clock() - ti;
+	double tempo_total = ((double)ti)/CLOCKS_PER_SEC;
 	for(i = 0; i < 3; i++) {
 		printf("Frase %d:\n",i+1);
 		for(j = 0; j < 3; j++) {
 			printf("Posicao Palavra %d: %d\n",j+1,Start[i][j]);
 		}
 	}
+	printf("Tempo de execucao: %f segundos\n",tempo_total);
 	fclose(arquivoTexto);
 	return 0;
 }
