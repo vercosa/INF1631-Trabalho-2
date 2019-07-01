@@ -9,18 +9,56 @@ def readTSPcoord (nomeArquivo):
 
     # lê o arquivo .tsp
     with open(nomeArquivo, 'r') as tsp:
-        for line in tsp:
-            # guarda a qtd de vértices
-            if 'DIMENSION' in line:
-                Ncities = int(line.split()[1])
+        if "bays29" in nomeArquivo:
+            for line in tsp:
+                if 'DIMENSION' in line:
+                    Ncities = int(line.split()[1])
 
-            # guarda as coordenadas das cidades
-            if 'NODE_COORD_SECTION' in line:
-                for indice, line in enumerate(tsp):
-                    if 'EOF' in line:
-                        break;
-                    CoordX.append(float(line.split()[1]))
-                    CoordY.append(float(line.split()[2]))
+                if 'DISPLAY_DATA_SECTION' in line:
+                    for indice, line in enumerate(tsp):
+                        if 'EOF' in line:
+                            break;
+                        # listaCidades.append(Cidade(float(line.split()[1]), float(line.split()[2])))
+                        CoordX.append(float(line.split()[1]))
+                        CoordY.append(float(line.split()[2]))
+        elif "dantzig42" in nomeArquivo:
+            for line in tsp:
+                if 'DIMENSION' in line:
+                    Ncities = int(line.split()[2])
+
+                if 'DISPLAY_DATA_SECTION' in line:
+                    for indice, line in enumerate(tsp):
+                        if 'EOF' in line:
+                            break;
+                        # listaCidades.append(Cidade(float(line.split()[1]), float(line.split()[2])))
+                        CoordX.append(float(line.split()[1]))
+                        CoordY.append(float(line.split()[2]))
+
+        elif "eil51" in nomeArquivo or "att48" in nomeArquivo or "eil76" in nomeArquivo or "bier127" in nomeArquivo or "usa13509" in nomeArquivo:
+            for line in tsp:
+                if 'DIMENSION' in line:
+                    Ncities = int(line.split()[2])
+
+                if 'NODE_COORD_SECTION' in line:
+                    for indice, line in enumerate(tsp):
+                        if 'EOF' in line:
+                            break;
+                        # listaCidades.append(Cidade(float(line.split()[1]), float(line.split()[2])))
+                        CoordX.append(float(line.split()[1]))
+                        CoordY.append(float(line.split()[2]))            
+        else:
+            for line in tsp:
+                if 'DIMENSION' in line:
+                    Ncities = int(line.split()[1])
+
+                if 'NODE_COORD_SECTION' in line:
+                    for indice, line in enumerate(tsp):
+                        if 'EOF' in line:
+                            break;
+                        # listaCidades.append(Cidade(float(line.split()[1]), float(line.split()[2])))
+                        CoordX.append(float(line.split()[1]))
+                        CoordY.append(float(line.split()[2]))
+
 
     # inicializa matriz de adjacência
     Cost = [[-1 for x in range(Ncities)] for y in range(Ncities)] 

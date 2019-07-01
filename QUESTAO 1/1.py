@@ -12,8 +12,8 @@ def arvorePesoMaximo (grafo, k):
 	# PASSO INDUTIVO
 	arvore = arvorePesoMaximo(grafo, k-1)
 
-	vertices = grafo.nodes()
-	verticesUsados = arvore.nodes()
+	vertices = grafo.nodes
+	verticesUsados = arvore.nodes
 	verticesAux = []
 	for vertice in vertices:
 		# guarda os vértices que ainda
@@ -31,21 +31,24 @@ def arvorePesoMaximo (grafo, k):
 
 	# inicializa a aresta que vai ser adicionada na árvore
 	# de peso máximo
-	nova_aresta = (1,1)
+	novaAresta = (1,1)
 	for aresta in arestas:
-		if grafo.edges([aresta]) > grafo.edges([nova_aresta]):
-			nova_aresta = aresta
+		if grafo.edges[aresta]['weight'] > grafo.edges[novaAresta]['weight']:
+			novaAresta = aresta
 
-	a, b = nova_aresta
+	a, b = novaAresta
 	arvore.add_node(b)
 	arvore.add_edge(a, b)
 
 	return arvore
 	
-
+# exemplo com o menor arquivo
 grafo = tspReadCalcMatDist.readTSPcoord("ulysses16.tsp")
-
 resultado = arvorePesoMaximo(grafo, len(grafo))
 nx.draw(resultado, with_labels=True)
-# plt.savefig('tmp.png')
-plt.show()
+
+# salva a imagem
+plt.savefig('arvorePesoMaximo.png')
+
+# mostra a imagem
+# plt.show()
